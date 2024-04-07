@@ -55,21 +55,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     // Auto enable scroll mode when the highest layer is 3
-    // keyball_set_scroll_mode(get_highest_layer(state) == 3);
+    //keyball_set_scroll_mode(get_highest_layer(state) == 3);
     return state;
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_ESC:
-            tap_code(KC_LNG2);
-            break;
-        case KC_LNG1:
-        case KC_LNG2:
-            layer_move(0);
-            break;
-    }
-    return true;
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(3); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
 }
 
 #ifdef OLED_ENABLE
@@ -79,8 +71,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void oledkit_render_info_user(void) {
     keyball_oled_render_keyinfo();
     keyball_oled_render_ballinfo();
-    //oled_write_P(PSTR("Layer:"), false);
-    //oled_write(get_u8_str(get_highest_layer(layer_state), ' '), false);
     keyball_oled_render_layerinfo();
 }
 #endif
