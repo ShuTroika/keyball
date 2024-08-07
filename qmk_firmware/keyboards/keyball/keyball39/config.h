@@ -31,8 +31,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SOFT_SERIAL_PIN         D2
 #define SPLIT_HAND_MATRIX_GRID  F6, B5
 #define SPLIT_USB_DETECT
-//#define SPLIT_USB_TIMEOUT       500
-//#define SPLIT_WATCHDOG_ENABLE
 #ifdef OLED_ENABLE
 #    define SPLIT_OLED_ENABLE
 #endif
